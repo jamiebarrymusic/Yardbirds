@@ -1,0 +1,396 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>About — Yardbirds Backyard Chickens</title>
+<link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet">
+<style>
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+  :root {
+    --cream: #FAF8F3;
+    --off-white: #F4F1EA;
+    --bark: #2C2416;
+    --bark-light: #5C4F38;
+    --straw: #D4A847;
+    --green: #3B5C2E;
+    --green-light: #5A7A4A;
+    --green-pale: #EBF0E6;
+    --muted: #7A6E5F;
+    --border: rgba(44,36,22,0.1);
+    --font-serif: 'DM Serif Display', Georgia, serif;
+    --font-sans: 'DM Sans', system-ui, sans-serif;
+  }
+  body { font-family: var(--font-sans); background: var(--cream); color: var(--bark); line-height: 1.6; font-size: 16px; }
+
+  /* NAV */
+  nav { display: flex; align-items: center; justify-content: space-between; padding: 0.9rem 2.5rem; background: #fff; border-bottom: 1px solid var(--border); position: sticky; top: 0; z-index: 100; }
+  .nav-logo { font-family: var(--font-serif); font-size: 1.15rem; color: var(--bark); text-decoration: none; flex-shrink: 0; }
+  .nav-logo span { color: var(--green); }
+  .nav-center { display: flex; gap: 1.75rem; list-style: none; }
+  .nav-center a { font-size: 13px; color: var(--bark-light); text-decoration: none; transition: color 0.2s; white-space: nowrap; }
+  .nav-center a:hover, .nav-center a.active { color: var(--green); }
+  .nav-right { display: flex; align-items: center; gap: 0.9rem; flex-shrink: 0; }
+  .nav-social { display: flex; align-items: center; gap: 0.6rem; }
+  .nav-social-link { display: flex; align-items: center; gap: 5px; font-size: 13px; color: var(--bark-light); text-decoration: none; transition: color 0.2s; }
+  .nav-social-link:hover { color: var(--green); }
+  .nav-social-link svg { width: 15px; height: 15px; fill: currentColor; flex-shrink: 0; }
+  .nav-social-link.ig svg { fill: none; stroke: currentColor; stroke-width: 1.5; stroke-linecap: round; stroke-linejoin: round; }
+  .nav-divider { width: 1px; height: 16px; background: var(--border); display: inline-block; }
+  .nav-cta { background: var(--green); color: #fff; padding: 0.4rem 1rem; border-radius: 50px; font-size: 13px; font-weight: 500; text-decoration: none; transition: background 0.2s; white-space: nowrap; }
+  .nav-cta:hover { background: var(--green-light); }
+  .nav-hamburger { display: none; flex-direction: column; gap: 5px; cursor: pointer; background: none; border: none; padding: 4px; }
+  .nav-hamburger span { display: block; width: 22px; height: 2px; background: var(--bark); border-radius: 2px; }
+  .nav-mobile { display: none; background: #fff; border-bottom: 1px solid var(--border); padding: 0.75rem 1.5rem 1.25rem; flex-direction: column; }
+  .nav-mobile.open { display: flex; }
+  .nav-mobile a { font-size: 15px; color: var(--bark-light); text-decoration: none; padding: 0.6rem 0; border-bottom: 1px solid var(--border); display: block; }
+  .nav-mobile .mob-cta { background: var(--green); color: #fff; text-align: center; border-radius: 50px; margin-top: 0.75rem; padding: 0.6rem 1rem; border-bottom: none; font-weight: 500; }
+  @media (max-width: 780px) {
+    .nav-center, .nav-right { display: none; }
+    .nav-hamburger { display: flex; }
+    nav { padding: 0.9rem 1.5rem; }
+  }
+
+  /* PAGE HEADER */
+  .page-header { background: var(--bark); padding: 3.5rem 3.5rem 3rem; }
+  .page-tag { font-size: 11px; font-weight: 500; letter-spacing: 0.1em; text-transform: uppercase; color: var(--straw); margin-bottom: 0.6rem; }
+  .page-header h1 { font-family: var(--font-serif); font-size: clamp(2rem, 3.5vw, 3rem); color: #fff; line-height: 1.15; margin-bottom: 1rem; letter-spacing: -0.02em; }
+  .page-header p { font-size: 1rem; color: rgba(255,255,255,0.6); line-height: 1.75; max-width: 560px; }
+
+  /* SHARED */
+  .section { padding: 3rem 3.5rem; }
+  .section-tag { font-size: 11px; font-weight: 500; letter-spacing: 0.1em; text-transform: uppercase; color: var(--green); margin-bottom: 0.4rem; }
+  .section-title { font-family: var(--font-serif); font-size: clamp(1.5rem, 2.5vw, 2rem); color: var(--bark); margin-bottom: 0.75rem; line-height: 1.2; }
+  .prose { font-size: 15px; color: var(--bark-light); line-height: 1.8; max-width: 680px; }
+  .prose p { margin-bottom: 1.1rem; }
+  .prose p:last-child { margin-bottom: 0; }
+  .prose a { color: var(--green); text-decoration: none; border-bottom: 1px solid var(--green-pale); transition: border-color 0.2s; }
+  .prose a:hover { border-color: var(--green); }
+
+  /* BIO SECTION */
+  .bio-section { background: var(--off-white); padding: 3rem 3.5rem; display: grid; grid-template-columns: 340px 1fr; gap: 4rem; align-items: start; }
+  .bio-img-wrap { border-radius: 14px; overflow: hidden; aspect-ratio: 4/5; background: var(--green-pale); position: sticky; top: 80px; }
+  .bio-img-wrap img { width: 100%; height: 100%; object-fit: cover; }
+
+  /* CREDENTIALS */
+  .creds { display: flex; flex-direction: column; gap: 0.6rem; margin: 1.5rem 0; }
+  .cred { display: flex; align-items: center; gap: 10px; font-size: 14px; color: var(--bark-light); }
+  .cred-dot { width: 6px; height: 6px; background: var(--straw); border-radius: 50%; flex-shrink: 0; }
+
+  /* PRESS */
+  .press-section { padding: 3rem 3.5rem; background: var(--cream); }
+  .press-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1rem; margin-top: 1.5rem; }
+  .press-card { background: #fff; border: 1px solid var(--border); border-radius: 12px; padding: 1.25rem 1.5rem; text-decoration: none; transition: background 0.2s, transform 0.2s; display: block; }
+  .press-card:hover { background: var(--green-pale); transform: translateY(-2px); }
+  .press-outlet { font-size: 13px; font-weight: 500; color: var(--bark); margin-bottom: 0.25rem; }
+  .press-date { font-size: 11px; color: var(--muted); text-transform: uppercase; letter-spacing: 0.05em; margin-bottom: 0.5rem; }
+  .press-desc { font-size: 13px; color: var(--muted); line-height: 1.55; }
+
+  /* COMMUNITY */
+  .community-section { background: var(--off-white); padding: 3rem 3.5rem; }
+  .community-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 1.5rem; margin-top: 1.5rem; }
+  .community-card { background: #fff; border: 1px solid var(--border); border-radius: 12px; padding: 1.5rem; }
+  .community-card h3 { font-family: var(--font-serif); font-size: 1rem; color: var(--bark); margin-bottom: 0.5rem; }
+  .community-card p { font-size: 13px; color: var(--muted); line-height: 1.65; }
+  .community-card a { color: var(--green); text-decoration: none; border-bottom: 1px solid var(--green-pale); }
+  .community-card a:hover { border-color: var(--green); }
+
+  /* RECOMMENDATION */
+  .rec-section { padding: 3rem 3.5rem; }
+  .rec-card { background: var(--green); border-radius: 14px; padding: 2rem 2.5rem; max-width: 760px; }
+  .rec-card blockquote { font-family: var(--font-serif); font-size: 1.2rem; color: #fff; font-style: italic; line-height: 1.6; margin-bottom: 1rem; }
+  .rec-card p { font-size: 14px; color: rgba(255,255,255,0.65); line-height: 1.7; }
+  .rec-card a { color: var(--straw); text-decoration: none; }
+  .rec-card a:hover { text-decoration: underline; }
+
+  /* CONTACT */
+  .contact-section { background: var(--off-white); padding: 3rem 3.5rem; }
+  .contact-inner { display: grid; grid-template-columns: 1fr 1.4fr; gap: 4rem; align-items: start; }
+  .contact-details { display: flex; flex-direction: column; gap: 1.1rem; margin-top: 1.5rem; }
+  .contact-detail { display: flex; flex-direction: column; gap: 2px; }
+  .detail-label { font-size: 11px; font-weight: 500; letter-spacing: 0.08em; text-transform: uppercase; color: var(--green); }
+  .contact-detail a { font-size: 14px; color: var(--bark); text-decoration: none; border-bottom: 1px solid var(--straw); width: fit-content; }
+  .contact-detail span { font-size: 14px; color: var(--bark); }
+  .detail-note { font-size: 12px; color: var(--muted); margin-top: 2px; }
+  .contact-form { display: flex; flex-direction: column; gap: 1.1rem; background: #fff; border: 1px solid var(--border); border-radius: 14px; padding: 2rem; }
+  .form-row { display: grid; grid-template-columns: 1fr 1fr; gap: 1rem; }
+  .form-group { display: flex; flex-direction: column; gap: 0.4rem; }
+  .form-group label { font-size: 13px; font-weight: 500; color: var(--bark); }
+  .form-group input, .form-group select, .form-group textarea { font-family: var(--font-sans); font-size: 14px; color: var(--bark); background: var(--cream); border: 1px solid var(--border); border-radius: 8px; padding: 0.6rem 0.9rem; outline: none; transition: border-color 0.2s; resize: vertical; }
+  .form-group input:focus, .form-group select:focus, .form-group textarea:focus { border-color: var(--green); }
+  .form-group input::placeholder, .form-group textarea::placeholder { color: var(--muted); }
+  .form-submit { background: var(--green); color: #fff; padding: 0.75rem 1.5rem; border-radius: 50px; border: none; font-family: var(--font-sans); font-size: 14px; font-weight: 500; cursor: pointer; transition: background 0.2s; align-self: flex-start; }
+  .form-submit:hover { background: var(--green-light); }
+
+  /* FOOTER */
+  footer { background: var(--bark); padding: 2.5rem 3.5rem; display: grid; grid-template-columns: 2fr 1fr 1fr 1fr; gap: 3rem; }
+  .footer-brand { font-family: var(--font-serif); font-size: 1.15rem; color: #fff; margin-bottom: 0.6rem; }
+  .footer-brand span { color: var(--straw); }
+  footer p { font-size: 13px; color: rgba(255,255,255,0.45); line-height: 1.65; }
+  .footer-col h4 { font-size: 11px; font-weight: 500; letter-spacing: 0.08em; text-transform: uppercase; color: rgba(255,255,255,0.35); margin-bottom: 0.75rem; }
+  .footer-col ul { list-style: none; }
+  .footer-col li { margin-bottom: 0.5rem; }
+  .footer-col a { font-size: 13px; color: rgba(255,255,255,0.6); text-decoration: none; transition: color 0.2s; }
+  .footer-col a:hover { color: var(--straw); }
+  .footer-bottom { background: var(--bark); padding: 1rem 3.5rem; border-top: 1px solid rgba(255,255,255,0.08); font-size: 12px; color: rgba(255,255,255,0.3); }
+</style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav>
+  <a class="nav-logo" href="index.html"><span>Yardbirds</span> Backyard Chickens</a>
+  <ul class="nav-center">
+    <li><a href="services.html">Services</a></li>
+    <li><a href="chickenpics.html">Chicken Pics</a></li>
+    <li><a href="blog.html">Blog</a></li>
+    <li><a href="about.html" class="active">About</a></li>
+  </ul>
+  <div class="nav-right">
+    <div class="nav-social">
+      <a class="nav-social-link" href="https://www.facebook.com/YardbirdsBackyardChickens/" target="_blank">
+        <svg viewBox="0 0 24 24"><path d="M18 2h-3a5 5 0 00-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 011-1h3z"/></svg>
+        Facebook
+      </a>
+      <a class="nav-social-link ig" href="https://www.instagram.com/yardbirdsbackyardchickens/" target="_blank">
+        <svg viewBox="0 0 24 24"><rect x="2" y="2" width="20" height="20" rx="5" ry="5"/><path d="M16 11.37A4 4 0 1112.63 8 4 4 0 0116 11.37z"/><line x1="17.5" y1="6.5" x2="17.51" y2="6.5"/></svg>
+        Instagram
+      </a>
+    </div>
+    <span class="nav-divider"></span>
+    <a class="nav-cta" href="#contact">Get in touch</a>
+  </div>
+  <button class="nav-hamburger" onclick="document.querySelector('.nav-mobile').classList.toggle('open')" aria-label="Menu">
+    <span></span><span></span><span></span>
+  </button>
+</nav>
+<div class="nav-mobile">
+  <a href="services.html">Services</a>
+  <a href="chickenpics.html">Chicken Pics</a>
+  <a href="blog.html">Blog</a>
+  <a href="about.html">About</a>
+  <a href="https://www.facebook.com/YardbirdsBackyardChickens/" target="_blank">Facebook</a>
+  <a href="https://www.instagram.com/yardbirdsbackyardchickens/" target="_blank">Instagram</a>
+  <a class="mob-cta" href="#contact">Get in touch</a>
+</div>
+
+<!-- PAGE HEADER -->
+<div class="page-header">
+  <div>
+    <p class="page-tag">The Chickeness</p>
+    <h1>About Khrysti Smyth<br>& Yardbirds Backyard Chickens</h1>
+    <p>YBC was founded in early summer 2012 with one goal: connecting urban chicken keepers-to-be with the expertise, birds, and community they need to do it right.</p>
+  </div>
+</div>
+
+<!-- BIO -->
+<section class="bio-section">
+  <div class="bio-img-wrap">
+    <img src="khrysti.jpeg" alt="Khrysti Smyth, The Chickeness, with a completed coop installation">
+  </div>
+  <div class="bio-text">
+    <p class="section-tag">Founder</p>
+    <h2 class="section-title">Khrysti Smyth — The Chickeness</h2>
+
+    <div class="creds">
+      <div class="cred"><span class="cred-dot"></span>5 years as a veterinary technician</div>
+      <div class="cred"><span class="cred-dot"></span>Years of field research in wildlife ecology</div>
+      <div class="cred"><span class="cred-dot"></span>Keeping chickens since May 2009</div>
+      <div class="cred"><span class="cred-dot"></span>Teaching classes & seminars since 2012</div>
+      <div class="cred"><span class="cred-dot"></span>Insured & bonded pet sitter</div>
+    </div>
+
+    <div class="prose">
+      <p>Khrysti started thinking about keeping her own backyard birds in the fall of 2008 and quickly soaked up everything she could find — hours of research on coop design, breeds, and every aspect of their care. She got her first batch of chicks in May 2009 and never looked back.</p>
+
+      <p>Over the next few years she became deeply involved in the broader regional community of backyard chicken hobbyists — entering poultry shows with a few of her birds, getting to know breeders and keepers across New England, and beginning to teach classes and seminars in the Boston area. By late spring of 2012 it was clear that her knowledge and her position within the community were in high demand, and Yardbirds Backyard Chickens was... ahem... hatched.</p>
+
+      <p>Since then, Khrysti has become a go-to resource for urban chicken keepers across New England and beyond. She has taught hundreds of classes, consulted on countless coop builds, and helped new flock owners navigate the whole journey from "is this even legal?" to "why won't she go into the coop at night?" (It's always that one hen.)</p>
+
+      <p>In late 2018, YBC's home base migrated from the Boston area out to western Massachusetts — to the delightful, farm-y town of Granby, MA in the Pioneer Valley, where Khrysti lives with her flock and menagerie.</p>
+    </div>
+  </div>
+</section>
+
+<!-- PRESS -->
+<section class="press-section">
+  <p class="section-tag">As seen in</p>
+  <h2 class="section-title">The Chickeness in the press</h2>
+  <div class="press-grid">
+    <a class="press-card" href="https://www.bostonglobe.com/business/2016/08/26/for-this-aviculturist-chicken-came-first/n4BMu9XcngbIH1dkp7FoAJ/story.html" target="_blank">
+      <p class="press-outlet">Boston Globe</p>
+      <p class="press-date">August 2016</p>
+      <p class="press-desc">"On the job" feature on Khrysti's work as an aviculturist and chicken consultant.</p>
+    </a>
+    <a class="press-card" href="https://www.youtube.com/watch?v=cjE4vl9t6-g#t=127" target="_blank">
+      <p class="press-outlet">WGBH TV</p>
+      <p class="press-date">July 2014</p>
+      <p class="press-desc">TV news feature on urban chicken keeping in Boston, featuring Khrysti and her flock.</p>
+    </a>
+    <a class="press-card" href="http://www.bostonmagazine.com/health/blog/2015/04/03/chicken-keeping-boston-backyard-urban-farming/" target="_blank">
+      <p class="press-outlet">Boston Magazine</p>
+      <p class="press-date">April 2015</p>
+      <p class="press-desc">Feature on YBC's partnership with Green City Growers and the rise of urban chicken keeping.</p>
+    </a>
+    <a class="press-card" href="http://edibleboston.com/coops-de-ville/" target="_blank">
+      <p class="press-outlet">Edible Boston</p>
+      <p class="press-date">June 2013</p>
+      <p class="press-desc">Featured profile on Yardbirds Backyard Chickens and the urban farming movement.</p>
+    </a>
+    <a class="press-card" href="http://radioboston.wbur.org/2011/07/13/city-chickens" target="_blank">
+      <p class="press-outlet">WBUR — Boston's NPR</p>
+      <p class="press-date">July 2011</p>
+      <p class="press-desc">Radio feature on city chickens with Khrysti as a featured expert voice.</p>
+    </a>
+    <a class="press-card" href="#" target="_blank">
+      <p class="press-outlet">Animal Planet</p>
+      <p class="press-date">November 2011</p>
+      <p class="press-desc">Featured on Animal Planet's "Pets 101" program.</p>
+    </a>
+  </div>
+</section>
+
+<!-- COMMUNITY -->
+<section class="community-section">
+  <p class="section-tag">Community & policy work</p>
+  <h2 class="section-title">Building the movement, not just the coops</h2>
+  <p class="prose" style="margin-bottom: 0;">Khrysti has been an active part of the urban agriculture policy conversation in Massachusetts since the early days of YBC — helping to shape the rules that make backyard chickens possible for thousands of people.</p>
+  <div class="community-grid">
+    <div class="community-card">
+      <h3>Somerville urban agriculture ordinance</h3>
+      <p>Khrysti was an integral part of the creation of <a href="http://www.somervillema.gov/news/somerville-becomes-first-city-commonwealth-unveil-urban-agriculture-ordinance" target="_blank">Somerville's urban agriculture-focused zoning ordinance</a> — the first of its kind in the Commonwealth of Massachusetts. A landmark moment for urban farming in New England.</p>
+    </div>
+    <div class="community-card">
+      <h3>City of Boston — Article 89</h3>
+      <p>Following Somerville's lead, Khrysti worked with the City of Boston to help develop <a href="http://www.bostonredevelopmentauthority.org/Planning/PlanningInitsIndividual.asp?action=ViewInit&InitID=152" target="_blank">Article 89</a>, Boston's urban agriculture rezoning — opening the door for backyard chickens and urban farming across the city.</p>
+    </div>
+    <div class="community-card">
+      <h3>Green City Growers partnership</h3>
+      <p>YBC partnered for many years with <a href="http://www.greencitygrowers.com" target="_blank">Green City Growers</a> in Somerville to develop and manage their backyard chicken services — a fantastic company for all your edible urban gardening needs in New England.</p>
+    </div>
+    <div class="community-card">
+      <h3>Teaching & public appearances</h3>
+      <p>Khrysti has presented at the Boston Flower & Garden Show, Northeastern University, Tufts Vet School, Mass Audubon, the Urban Farming Institute, countless farmers' markets, garden clubs, libraries, and community events across the region.</p>
+    </div>
+  </div>
+</section>
+
+<!-- RECOMMENDATION -->
+<section class="rec-section">
+  <p class="section-tag">A recommendation</p>
+  <h2 class="section-title" style="margin-bottom: 1.5rem;">For Boston-area flock keepers</h2>
+  <div class="rec-card">
+    <blockquote>"If you're in the greater Boston area and have questions about keeping backyard chickens, I also recommend contacting Gretchen, the 'Crazy Chicken Lady' at Chickadee Seed &amp; Feed."</blockquote>
+    <p>Gretchen at <a href="https://www.chickadeeseed.com/" target="_blank">Chickadee Seed &amp; Feed in Walpole, MA</a> is one of the few people Khrysti trusts to know as much about keeping a microflock of backyard chickens in an urban or suburban setting — and to have standards of care that may even be higher than her own. Their store is a fantastic resource for well-designed coops, locally-produced feeds, and everything to keep your girls happy and healthy.</p>
+  </div>
+</section>
+
+<!-- CONTACT -->
+<section id="contact" class="contact-section">
+  <div class="contact-inner">
+    <div class="contact-info">
+      <p class="section-tag">Get in touch</p>
+      <h2 class="section-title">Say hello</h2>
+      <p class="prose" style="margin-bottom: 0;">Email is preferred — send a note and Khrysti will get back to you as soon as she can. If it's urgent (sick bird), put <strong>URGENT</strong> in the subject line. Or find her on Facebook and Instagram.</p>
+      <div class="contact-details">
+        <div class="contact-detail">
+          <span class="detail-label">Email</span>
+          <a href="mailto:thechickeness@gmail.com">thechickeness@gmail.com</a>
+        </div>
+        <div class="contact-detail">
+          <span class="detail-label">Phone</span>
+          <a href="tel:6178636326">617.863.6326</a>
+          <span class="detail-note">Leave a message if I don't pick up — I'll call back!</span>
+        </div>
+        <div class="contact-detail">
+          <span class="detail-label">Facebook</span>
+          <a href="https://www.facebook.com/YardbirdsBackyardChickens/" target="_blank">YardbirdsBackyardChickens</a>
+        </div>
+        <div class="contact-detail">
+          <span class="detail-label">Instagram</span>
+          <a href="https://www.instagram.com/yardbirdsbackyardchickens/" target="_blank">@yardbirdsbackyardchickens</a>
+        </div>
+        <div class="contact-detail">
+          <span class="detail-label">Payment</span>
+          <span>Venmo <a href="https://venmo.com/TheChickeness" target="_blank" style="color:var(--bark); border-bottom: 1px solid var(--straw);">@TheChickeness</a>, cash, or check on delivery</span>
+        </div>
+        <div class="contact-detail">
+          <span class="detail-label">Service area</span>
+          <span class="detail-note" style="font-size:13px; color: var(--bark-light);">Remote consultations &amp; classes: anywhere in the US<br>On-site: within ~1.5 hrs of Granby, MA</span>
+        </div>
+      </div>
+    </div>
+    <form class="contact-form" name="contact" method="POST" data-netlify="true">
+      <input type="hidden" name="form-name" value="contact">
+      <div class="form-row">
+        <div class="form-group">
+          <label for="name">Your name</label>
+          <input type="text" id="name" name="name" placeholder="Jane Smith" required>
+        </div>
+        <div class="form-group">
+          <label for="email">Email address</label>
+          <input type="email" id="email" name="email" placeholder="jane@example.com" required>
+        </div>
+      </div>
+      <div class="form-group">
+        <label for="service">What can we help with?</label>
+        <select id="service" name="service">
+          <option value="">Select a service...</option>
+          <option>Upcoming class info</option>
+          <option>Coop consultation (remote)</option>
+          <option>Coop consultation (on-site)</option>
+          <option>Flock wellness check</option>
+          <option>Sick bird — urgent</option>
+          <option>Hens available</option>
+          <option>Something else</option>
+        </select>
+      </div>
+      <div class="form-group">
+        <label for="message">Tell us about your flock</label>
+        <textarea id="message" name="message" rows="4" placeholder="Where are you located? How many birds? What's going on?"></textarea>
+      </div>
+      <button type="submit" class="form-submit">Send message</button>
+    </form>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <div>
+    <p class="footer-brand"><span>Yardbirds</span> Backyard Chickens</p>
+    <p>Western Massachusetts &amp; Southern New England.<br>Founded 2012 by Khrysti Smyth, The Chickeness.</p>
+  </div>
+  <div class="footer-col">
+    <h4>Services</h4>
+    <ul>
+      <li><a href="services.html">Classes &amp; seminars</a></li>
+      <li><a href="services.html">Consultations</a></li>
+      <li><a href="services.html">Wellness checks</a></li>
+      <li><a href="services.html">Sick bird triage</a></li>
+    </ul>
+  </div>
+  <div class="footer-col">
+    <h4>Site</h4>
+    <ul>
+      <li><a href="index.html">Home</a></li>
+      <li><a href="chickenpics.html">Chicken Pics</a></li>
+      <li><a href="blog.html">Blog</a></li>
+      <li><a href="about.html">About</a></li>
+      <li><a href="#contact">Contact</a></li>
+    </ul>
+  </div>
+  <div class="footer-col">
+    <h4>Find us</h4>
+    <ul>
+      <li><a href="https://www.facebook.com/YardbirdsBackyardChickens/" target="_blank">Facebook</a></li>
+      <li><a href="https://www.instagram.com/yardbirdsbackyardchickens/" target="_blank">Instagram</a></li>
+      <li><a href="https://thechickeness.blogspot.com" target="_blank">The Chickeness Blog</a></li>
+      <li><a href="tel:6178636326">617.863.6326</a></li>
+      <li><a href="https://venmo.com/TheChickeness" target="_blank">Venmo @TheChickeness</a></li>
+    </ul>
+  </div>
+</footer>
+<div class="footer-bottom">© 2025 Yardbirds Backyard Chickens · Granby, MA</div>
+
+</body>
+</html>
